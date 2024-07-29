@@ -1,0 +1,23 @@
+body{
+    background-color: rgb(163, 149, 149);
+    color: aliceblue;
+}
+
+h1{
+    margin-left: 40%;
+}
+
+.a{
+    
+    width: 400px; /* Ширина изображения */
+    height: auto; /* Автоматическое сохранение пропорций */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 120px; /* Отступ сверху */
+    left: 40%; /* Отступ слева */
+    border: 2px solid #000; /* Добавление рамки */
+
+}
+
+a{
+    top: 520px;
+}
