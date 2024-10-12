@@ -1,19 +1,37 @@
 <?php
 include 'config.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = filter_input_data($_POST['username']);
-    $password = password_hash(filter_input_data($_POST['password']), PASSWORD_DEFAULT);
+$username = $_POST['adiletkanybekovi'];
+$password = password_hash($_POST['730419Mama'], PASSWORD_DEFAULT);
+$adminCode = $_POST['adminCode']; // Новый код администратора
 
-    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    $stmt->bind_param("ss", $username, $password);
+// Определяем, является ли пользователь администратором
+$isAdmin = $adminCode === '12345'; // Замените YOUR_ADMIN_CODE на ваш реальный код администратора
 
-    if ($stmt->execute()) {
-        echo "Registration successful. <a href='login.html'>Login here</a>";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-    $stmt->close();
-    $conn->close();
+// SQL-запрос для вставки данных в таблицу пользователей
+$sql = "INSERT INTO users (adiletkanybekovi, 730419Mama, is_admin) VALUES ('$username', '$password', '$isAdmin')";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Регистрация прошла успешно!";
+} else {
+    echo "Ошибка: " . $sql . "<br>" . mysqli_error($conn);
 }
+
+mysqli_close($conn);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <h1>
+        Успешно Зарегистрировались!
+    </h1>
+     <a href="login.html">Войти</a>
+</body>
+</html>

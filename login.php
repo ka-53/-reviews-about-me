@@ -1,28 +1,36 @@
 <?php
 include 'config.php';
-session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = filter_input_data($_POST['username']);
-    $password = filter_input_data($_POST['password']);
+$username = filter_input_data($_POST['username'] ?? '');
+$password = $_POST['password'] ?? '';
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+// Подготовленный запрос для получения данных пользователя
+$sql = "SELECT * FROM users WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['username'] = $username;
-            header("Location: welcome.php");
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    if (password_verify($password, $row['password'])) {
+        session_start();
+        $_SESSION['user_id'] = $row['id'];
+        $_SESSION['adiletkanybekovi'] = $row['username'];
+        $_SESSION['is_admin'] = $row['is_admin'];
+
+        if ($row['is_admin']) {
+            header('Location: admin_dashboard.php'); // Администраторская панель
         } else {
-            echo "Invalid password.";
+            header('Location: welcome.php'); // Обычная панель пользователя
         }
     } else {
-        echo "No user found.";
+        echo "Неверный пароль!";
     }
-    $stmt->close();
-    $conn->close();
+} else {
+    echo "Пользователь не найден!";
 }
+
+$stmt->close();
+$conn->close();
 ?>

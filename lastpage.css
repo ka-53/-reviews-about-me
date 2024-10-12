@@ -1,19 +1,17 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4;
     color: #333;
     margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column; /* To align the header, form, and link vertically */
+    padding: 20px;
 }
 
 h1 {
     color: #444;
-    text-align: center;
+}
+
+h2 {
+    color: #666;
     margin-bottom: 20px;
 }
 
@@ -22,7 +20,7 @@ form {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px; /* Increased the form width */
+    margin-bottom: 20px;
 }
 
 label {
@@ -31,20 +29,22 @@ label {
     color: #333;
 }
 
-input[type="text"], input[type="password"] {
+textarea {
     width: 100%;
+    height: 100px;
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
     font-size: 14px;
+    color: #333;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
     background-color: #5cb85c;
     color: #fff;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -55,20 +55,21 @@ button:hover {
     background-color: #4cae4c;
 }
 
+p {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
 a {
-    display: block;
-    margin-top: 20px;
-    text-align: center;
     color: #337ab7;
     text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-p {
-    text-align: center;
-    margin-top: 20px;
-    color: #333;
 }
