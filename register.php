@@ -1,37 +1,33 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include 'config.php';
 
-$username = $_POST['adiletkanybekovi'];
-$password = password_hash($_POST['730419Mama'], PASSWORD_DEFAULT);
-$adminCode = $_POST['adminCode']; // Новый код администратора
+$username = $_POST['username'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$adminCode = $_POST['adminCode'];
+$isAdmin = ($adminCode === '12345') ? 1 : 0;
 
-// Определяем, является ли пользователь администратором
-$isAdmin = $adminCode === '12345'; // Замените YOUR_ADMIN_CODE на ваш реальный код администратора
+// Подготовленный запрос для безопасной вставки данных
+$stmt = $conn->prepare("INSERT INTO users (username, password, is_admin) VALUES (?, ?, ?)");
 
-// SQL-запрос для вставки данных в таблицу пользователей
-$sql = "INSERT INTO users (adiletkanybekovi, 730419Mama, is_admin) VALUES ('$username', '$password', '$isAdmin')";
-
-if (mysqli_query($conn, $sql)) {
-    echo "Регистрация прошла успешно!";
-} else {
-    echo "Ошибка: " . $sql . "<br>" . mysqli_error($conn);
+// Проверьте, что подготовка прошла успешно
+if (!$stmt) {
+    die("Ошибка подготовки запроса: " . $conn->error);
 }
 
-mysqli_close($conn);
-?>
+// Привязываем параметры: "s" для строки, "i" для целого числа
+$stmt->bind_param("ssi", $username, $password, $isAdmin);
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
-    <link rel="stylesheet" href="style1.css">
-</head>
-<body>
-    <h1>
-        Успешно Зарегистрировались!
-    </h1>
-     <a href="login.html">Войти</a>
-</body>
-</html>
+// Выполняем запрос
+if ($stmt->execute()) {
+    echo "Регистрация прошла успешно!";
+} else {
+    echo "Ошибка: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
+?>

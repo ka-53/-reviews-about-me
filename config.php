@@ -1,8 +1,8 @@
 <?php
-$servername = "mysql.about-me.shop";
-$username = "adiletkanybekovi";
-$password = "730419Mama"; // Используйте переменные окружения для безопасности
-$dbname = "lyudi";
+$servername = "localhost";
+$username = "root";
+$password = ""; // Используйте переменные окружения для безопасности
+$dbname = "test";
 
 // Создаем соединение с базой данных
 $conn = new mysqli($servername, $username, $password, $dbname);
