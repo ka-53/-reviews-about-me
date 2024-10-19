@@ -11,13 +11,14 @@ if (!isset($_SESSION['user_id']) || !$_SESSION['is_admin']) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Администраторская панель</title>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Администраторская панель</h1>
-    <p>Добро пожаловать, <?php echo htmlspecialchars($_SESSION['adiletkanybekovi']); ?>!</p>
+    <h1>Admin Panel</h1>
+    <p>Welcome, <?php echo htmlspecialchars($_SESSION['adiletkanybekovi']); ?>!</p>
 
-    <h2>Комментарии:</h2>
+    <h2>Comments:</h2>
     <?php
     include 'config.php';
 
@@ -48,7 +49,7 @@ if (!isset($_SESSION['user_id']) || !$_SESSION['is_admin']) {
     $conn->close();
     ?>
 
-    <a href="welcome.php">Назад к панели пользователя</a>
-    <a href="logout.php">Выйти</a>
+    <a href="welcome.php">Back to the user panel</a>
+    <a href="logout.php">Exit</a>
 </body>
 </html>

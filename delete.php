@@ -19,12 +19,12 @@ if ($comment_id > 0) {
     if ($stmt->execute()) {
         header('Location: admin_dashboard.php');
     } else {
-        echo "Ошибка: " . $stmt->error;
+        echo "Error: " . $stmt->error;
     }
 
     $stmt->close();
 } else {
-    echo "Неверный идентификатор комментария!";
+    echo "Invalid comment ID!";
 }
 
 $conn->close();

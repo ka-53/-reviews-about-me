@@ -14,18 +14,18 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="lastpage.css">
 </head>
 <body>
-    <h1>Добро пожаловать, <?php echo htmlspecialchars($_SESSION['adiletkanybekovi']); ?></h1>
+    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['adiletkanybekovi']); ?></h1>
 
-    <h2>Салам! Меня зовут Адилет...</h2>
+    <h2>Hi! My name is Adilet...</h2>
 
     <form action="add_comment.php" method="POST">
-        <label for="comment">Оставьте ваш комментарий:</label><br>
+        <label for="comment">Leave your comment:</label><br>
         <textarea id="comment" name="comment" required></textarea><br>
         <input type="hidden" name="is_admin" value="<?php echo $_SESSION['is_admin']; ?>">
-        <button type="submit">Отправить</button>
+        <button type="submit">Send</button>
     </form>
 
-    <h2>Комментарии:</h2>
+    <h2>Comments</h2>
     <?php
     include 'config.php';
 
@@ -55,7 +55,7 @@ if (!isset($_SESSION['user_id'])) {
     ?>
 
     <?php if ($_SESSION['is_admin']) { ?>
-        <a href="admin_dashboard.php">Перейти в администраторскую панель</a>
+        <a href="admin_dashboard.php">Go to the admin panel</a>
     <?php } ?>
 
     <a href

@@ -15,7 +15,7 @@ $stmt = $conn->prepare("INSERT INTO users (username, password, is_admin) VALUES 
 
 // Проверьте, что подготовка прошла успешно
 if (!$stmt) {
-    die("Ошибка подготовки запроса: " . $conn->error);
+    die("Request preparation error: " . $conn->error);
 }
 
 // Привязываем параметры: "s" для строки, "i" для целого числа
@@ -23,9 +23,9 @@ $stmt->bind_param("ssi", $username, $password, $isAdmin);
 
 // Выполняем запрос
 if ($stmt->execute()) {
-    echo "Регистрация прошла успешно!";
+    echo "Registration was successful!";
 } else {
-    echo "Ошибка: " . $stmt->error;
+    echo "Error: " . $stmt->error;
 }
 
 $stmt->close();

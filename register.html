@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Регистрация нового пользователя</h1>
+    <h1>Registering a new user</h1>
     <form id="registerForm" action="register.php" method="POST">
-        <label for="username">Имя пользователя:</label>
+        <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
-        <label for="password">Пароль:</label>
+        <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
-        <label for="confirmPassword">Подтвердите пароль:</label>
+        <label for="confirmPassword">Confirm the password:</label>
         <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-        <label for="adminCode">Код администратора (если вы администратор):</label>
+        <label for="adminCode">Admin code (if you are an administrator):</label>
         <input type="text" id="adminCode" name="adminCode">
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Register</button>
     </form>
 
-    <p>Уже есть аккаунт? <a href="login.html">Войдите здесь</a></p>
+    <p>Already have an account? <a href="login.html">Log in here</a></p>
 </body>
 </html>

@@ -25,10 +25,10 @@ if ($result->num_rows > 0) {
             header('Location: welcome.php'); // Обычная панель пользователя
         }
     } else {
-        echo "Неверный пароль!";
+        echo "Invalid password!";
     }
 } else {
-    echo "Пользователь не найден!";
+    echo "The user has not been found!";
 }
 
 $stmt->close();

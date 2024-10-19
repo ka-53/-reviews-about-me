@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Функция для фильтрации входных данных
+
 function filter_input_data($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
