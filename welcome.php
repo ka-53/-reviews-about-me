@@ -25,7 +25,7 @@ if (!isset($_SESSION['user_id'])) {
         <button type="submit">Send</button>
     </form>
 
-    <h2>Comments</h2>
+    <h2>Comments:</h2>
     <?php
     include 'config.php';
 
@@ -50,12 +50,15 @@ if (!isset($_SESSION['user_id'])) {
         echo "<p>Нет комментариев</p>";
     }
 
+    
+
     $stmt->close();
     $conn->close();
     ?>
+    <a href="login.html"> Back </a>
 
     <?php if ($_SESSION['is_admin']) { ?>
-        <a href="admin_dashboard.php">Go to the admin panel</a>
+        <a href="admin_dashboard.php">Back to admin panel</a>
     <?php } ?>
 
     <a href
